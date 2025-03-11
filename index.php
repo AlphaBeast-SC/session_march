@@ -1,3 +1,23 @@
+<?php
+if(isset($_GET["register"])){
+    include "db.php";
+    $email = $_GET["email"];
+    $username = $_GET["username"];
+    $city = $_GET["city"];
+    $password = $_GET["password"];
+    $confirmPassword = $_GET["confirmPassword"];
+
+    if($password !== $confirmPassword){
+        echo "Password invalid";
+    }else{
+        // insert data code...
+        $result = mysqli_query($conn, "INSERT INTO user(email, username, city, password) VALUES ('$email','$username','$city','$password')");
+        echo '<script>alert("New Data Inserted")</script>';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +26,7 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- EMail -->
-    <!-- USer Name -->
-    <!-- City -->
-     <!-- Password -->
-     <!-- confirm Password -->
-      <form>
+      <form action="" method="GET">
         <div>
             <label>Email</label><br>
             <input type="email" name="email" id="email"/>
@@ -33,10 +48,10 @@
             <input type="password" name="confirmPassword" id="confirmPassword"/>
         </div>
         <div>
-            
-
         <input type="submit" name="register" id="reg" />
         </div>
-        </form>
+        <br>
+    </form>
+    <a href="login.php">Click Here to Login</a>
 </body>
 </html>
